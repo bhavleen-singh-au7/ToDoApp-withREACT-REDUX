@@ -22,7 +22,7 @@ const reducer = function (state, action) {
   switch (action.type) {
     case CREATE_TODO: {
 
-      const todo = { ...todoModel, title: action.payload };
+      const todo = { ...todoModel, title: action.payload, id: Date() };
       return [...state, todo];
     }
 
@@ -30,13 +30,13 @@ const reducer = function (state, action) {
       return state;
 
     case DELETE_TODO:
-      return state;
+      const todos = state.filter(todo => todo.id !== action.payload);
+      return todos;
 
     default:
       return state;
   }
 
-  return state;
 };
 
 

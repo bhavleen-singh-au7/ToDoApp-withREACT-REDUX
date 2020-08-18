@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { CREATE_TODO } from './store/reducer';
+import TodoList from './TodoList';
 import './App.css';
 
 class App extends React.Component {
@@ -22,7 +23,6 @@ class App extends React.Component {
   };
 
   render() {
-    const { todos } = this.props;
     const { title } = this.state;
 
     return (
@@ -45,25 +45,11 @@ class App extends React.Component {
             >Add</button>
           </form>
         </div>
-        <div>
-          <ul>
-            {
-              todos.map((todo, idx) => {
-                return <li key={idx}>{todo.title}  </li>;
-              })
-            }
-          </ul>
-        </div>
+        <TodoList />
       </div>
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    todos: state
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -71,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
